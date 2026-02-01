@@ -8,12 +8,12 @@ headers = {
 }
 
 
-def fetch_website_contents(url):
+def fetch_website_contents(url, verify=False):
     """
     Return the title and contents of the website at the given url;
     truncate to 2,000 characters as a sensible limit
     """
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=verify)
     soup = BeautifulSoup(response.content, "html.parser")
     title = soup.title.string if soup.title else "No title found"
     if soup.body:
